@@ -6,11 +6,19 @@ ____
         - 1.1.1 defns
         - 1.1.2 $\sigma$-algebra
         - [1.1.3 axioms of probability, definitions](#axioms-of-probability-113-hb-30)
-        - [1.1.4. union, intersection, conditioning and independence](#probability-facts-114-hb-31-40)
+        - [1.1.4. union, intersection, conditioning and basic independence](#probability-facts-114-hb-31-40)
         - [1.1.5. basic laws of probability](#basic-laws-of-probability-115)
     - [1.2 Random Variables, Expectation, Higher Moments](#section-12-random-variables-expectation-higher-moments)
-        - 1.2.1 discrete and continuous random variables
-        - 1.2.2 expectation, variance, functions of a random variable
+        - 1.2.1 discrete random variables and combining rvs
+            - pdf, cdf, tail
+            - [combining RVs](#combining-random-variables)
+        - [1.2.2 expectation, variance, functions of a random variable](#ins-expectation-of-random-variables-122)
+            - [expectation of a product](#ins-expectation-of-a-product)
+            - [conditional expectation](#ins-conditional-expectation)
+            - [countable partitions/law of total expectation](#ins-countable-partitionslaw-of-total-expectation)
+        - [1.2.3 variance, and 2nd moment measures](#ins-variance-and-higher-moments)
+            - [std/squared coefficient of variation](#ins-other-second-moment-related-metrics)
+
         - 1.2.2 generating RVs
         - 1.2.3 applications
 
@@ -109,15 +117,77 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > $$p_X(a) = P[X = a] \text{ where } \sum_x p_X(x) = 1 \tag{Probability Mass Function (pmf)}$$
 > $$F_X(a) = P[X \leq a] = \sum_{x\leq a} p_X(x) \tag{Cumulative Distr. Function (cdf)}$$
 > $$\bar{F}_X(a) = P[X > a] = 1 - F_X(a) \tag{Tail}$$
-> For two drvs $X,Y$, we define the **joint probability mass function** $p_{X,Y}(x,y)$ as follows:
-> $$p_{X,Y}(x,y) = P[X = x \cap Y = y]$$
-> \- By the [*Law of Total Probability*](#ins-law-of-total-probability), we have $$p_X(x) = \sum_y p_{X,Y}(x,y) \tag{Marginal Probability Mass Function}$$
 > \- For a continuous random variable $X$, we have an analagous definition to the pmf, the **probability density function** (pdf):
 > $$P[a \leq X \leq b] = \int_a^b f_X(x)dx$$
 > \- naturally, we have normalization (we do in the discrete case as well, just replace $\int$ with $\sum$). For a crv $X$ with domain $D$, say $D = (-\infty,\infty)$, we have
 > $$\int_D f_X(x)dx = 1$$
 > \- the cdf and tails for crvs are analagous to the discrete case
 
+> #### **Combining Random Variables**
+> For two drvs $X,Y$, we define the **joint probability mass function** $p_{X,Y}(x,y)$ as follows:
+> $$p_{X,Y}(x,y) = P[X = x \cap Y = y]$$
+> \- By the [*Law of Total Probability*](#ins-law-of-total-probability), we have $$p_X(x) = \sum_y p_{X,Y}(x,y) \tag{Marginalization}$$
+
+> #### <ins> **Expectation of Random Variables** $[1.2.2]$
+> The **expectation** or the mean of the distribution from which $X$ is drawn of an rv $X$ defined over domain $D$, is: 
+> $$E[X] = \sum_{x\in D} x\cdot p_X(x) \tag{defn. \textbf{Expectation for drv}}$$
+> #### <ins> **Linearity of Expectation (Fundamental)**
+> For any rvs $X$ and $Y$, 
+> $$E[X+Y] = E[X] + E[Y]$$
+> *Proof*: Write the summations out, split into two double sums, then pull the variable out from the first sum **[HB 69]**.
+> #### <ins> **Alternative Definition of Expectation**
+> Let the domain of $X$, $D(x),$ be $\mathbb{N}$. Then:
+> $$E[X] = \sum_{x=0}^{\infty} P[X>x] \tag{Summing the Tail}$$
+> #### <ins> **Expectation of a Product**
+> Let $X,Y$ be rvs. The **expectation of $XY$** is defined as follows:
+> $$E[XY] = \sum_x\sum_y xy \text{ } p_{X,Y}(x,y)$$
+> We also have that $X \perp Y \implies$ $E[XY] = E[X]E[Y]$ (**independence via expectation**)
+> #### <ins> **Expectation of a Function/Law of the Unconscious Statistician**
+> $$E[g(X)] = \sum_x g(x) \cdot p_X(x) \tag{\textbf{Expectation of a Function}}$$
+
+> #### <ins> **Conditional Expectation** 
+> Let $X$ be a drv and let $\Omega$ be countable, including event $A : P[A] > 0$. Then $p_{X\mid A}$ is the **conditional pmf** of $X$ given $A$:
+> $$p_{X\mid A}(x) = P[X = x | A] = \frac{P[X = x \cap A]}{P[A]} $$
+> This allows us to define the **conditional expectation of $X$ given $A$**:
+> $$E[X\mid A] = \sum_{x \in A} x p_{X\mid A}(x)$$
+
+> #### <ins> **Countable Partitions/Law of Total Expectation**
+> First, we'll give the important special case **[HB 79 Thm. 4.22]**: if $F_1, F_2, ...$ is a countable partition of $\Omega$, then:
+> $$E[X] = \sum_{i=1}^{\infty} E[X \mid F_i] P[F_i] \tag{$*$}$$
+> Given a discrete rv $Y$, if we treat $Y = y$ as an event, then we can write:
+> $$E[X] = \sum_y E[X \mid Y = y]\cdot P[Y = y] $$
+> *Proof*: Write out the sum, flip order of summation, pull $y$ terms through, apply [defn. of conditional expectation](#ins-conditional-expectation)\
+> Now, we'll give the **Law of Total Expectation**:\
+> Let $X,Y$ be rvs on the same [probability space](#a-namebasicsa-section-11-basics), where $X$ takes values in $\mathcal{X}$, and $Y$ in $\mathcal{Y}$. Then:
+> $$E[E[X\mid Y]] = E[X] \tag{\textbf{Law of Total Expectation}}$$
+> [*Proof*](https://statproofbook.github.io/P/mean-tot.html): 
+> $$E[E[X\mid Y]] = E \big\lbrack \sum_{x\in \mathcal{X}} x \cdot P[X = x \mid Y]\big\rbrack \tag{1}$$
+> $$= \sum_{y \in \mathcal{Y}} [\sum_{x\in \mathcal{X}} x P\big[X = x \mid Y = y]\big]P[Y = y] \tag{2}$$
+> $$\sum_{x\in\mathcal{X}}\sum_{y\in\mathcal{Y}} x P[X = x \mid Y = y] P[Y = y] \tag{3}$$
+> So far, $(1),(2)$ were by definition, and $(3)$ just switched the order of summation, which you can usually do with finite sums, but I'll point the interested reader to [Fubini's in Discrete Math](https://web.math.ucsb.edu/~cmart07/fubini.pdf). Continuing, we apply the [defn. of conditional probability](#probability-facts-114-hb-31-40) and pull $x$ out from the inner sum to obtain:
+> $$E[E[X\mid Y]] = \sum_{x\in\mathcal{X}} x \sum_{y\in \mathcal{Y}} P[X = x \cap Y = y] \tag{4}$$
+> We marginalize to and notice that this is just $E[X]$:
+> $$\sum_{x \in \mathcal{X}} x P[X = x] \tag{5, qed.} = E[X]$$
+> Finally, we'll generalize [$(*)$](#ins-countable-partitionslaw-of-total-expectation):
+> $$E[g(X)] = \sum_y E[g(X) \mid Y = y]P[Y = y] \tag{\textbf{Expectation of Function via Conditioning}}$$
+
+> #### <ins> **Variance and Higher Moments**
+> The $k^{th}$ moment of the rv $X$ is $E[X^k]$. Usually, we only care about the first ($E[X]$) and second moments, and we use the second moment in the form of **variance**, which measures the unnormalized deviation of $X$ from its mean. There are several definitions of variance, all of which are useful in different contexts. 
+> $$\text{Var}(x) = E[(X - E[X])^2] \tag{first defn. of variance}$$
+> $$\text{Var}(x) = E[X^2] - E[X]^2 \tag{second defn. of variance}$$
+> *Proof*: [Linearity of Expectation](#ins-linearity-of-expectation-fundamental)
+> #### <ins> **Theorem: Linearity of Variance**
+> Let $X$ and $Y$ be rvs such that $X\perp Y$. Then
+> $$\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y)$$
+> This naturally generalizes from 2 to $n$.\
+> *Proof*: Write out the definitions, use [independence via expectation](#ins-expectation-of-a-product) 
+
+> #### <ins> **Other Second-Moment Related Metrics**
+> \- the **standard deviation** of $X$ is defined as 
+> $$\sigma_X = \text{std}(X) = \sqrt{\text{Var}(X)}$$
+> \- the **squared coefficient of variation** of $X$ is defined as
+> $$C^2_X = \frac{\text{Var}(X)}{E[X^2]}$$
+> This is often useful, as it provides a normalized measure of $X$'s deviation from its mean.
 ## **Convex Distances and Related Inequalities** [source](https://jpmastrogiacomo.ca/files/Talagrand_convex_hull_concentration_inequality.pdf)
 - we are considering the probabilities of random variables landing in subsets of the sample space, where the sample space is itself a product of sample spaces
     - we want to understand the probability an RV in $\Omega$ is in the subset $A$
