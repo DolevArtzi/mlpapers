@@ -29,8 +29,10 @@ In other words, to obtain $(\phi(x))_i$, this protocol just hashes each index $j
 - *add the $\phi_0$ thing*
 
 Then, we define the parameterized inner product as expected by
+
 $$ \langle x,x'\rangle_\phi = \langle\phi^{h,\xi}(x),\phi^{h,\xi}(x')\rangle  \tag{3}$$
 Let's look at this expression more carefully. 
+
 $$\lparen \langle x,x' \rangle_{\phi}\rangle \rparen_i = \lparen \sum_{j : h(j) = i}\xi(j)x_j \rparen \lparen \sum_{j : h(j) = i}\xi(j)x'_j \rparen$$
 ___
 ### Lemma 2: Unbiased Mean, $O(\frac{1}{m})$ Variance for Unit Vectors Under the Hash Kernel
@@ -39,21 +41,30 @@ ___
 - $(2.3)$ Variance implies $\sigma_{x,x'}^2 = O(\frac{1}{m})$ for unit vectors $x,x'$
 ### *Proof*
 We'll start by reproducing $(9)$ here:
+
 $$ \langle x,x' \rangle_\phi = \sum_{i,j} \xi(i)\xi(j)x_i x_j' \delta_{h(i),h(j)} \tag{9}$$
 where $\delta_{E}$ is an indicator random variable (irv) for event $E$, and $\delta_{h(i),h(j)}$ is an irv for the event that $i,j$ collide under $h$. Note that $\xi(\cdot) = 0$ by symmetry, and likewise $\xi^2(i) = 1$ $ \forall i$. So, all terms with $i \neq j$ disappear from the summation, and we obtain the following simpler form:
+
 $$ \langle x,x' \rangle_\phi = \sum_i x_i x'_i$$
 which completes the proof of $(2.1)$.
 
 $$ Var_\phi [\langle x,x' \rangle_\phi] = E[\langle x,x' \rangle_\phi^2] - E[\langle x,x' \rangle_\phi]^2 $$
 Let's modify $(9)$ for the second moment as usual ('squaring' the terms in the summation, but avoiding correlation):
+
 $$ \langle x,x' \rangle_\phi^2 = \sum_{i,j,k,l} \xi(i)\xi(j)\xi(k) \xi(l) x_i x_j' x_k x_l' \delta_{h(i),h(j)} \delta_{h(k),h(l)}\tag{9a}$$
 As we often do when proving our hash functions are nice, let's consider $\xi(i)\xi(j)\xi(k)\xi(l)$. Writing $\delta_{x_1,...,x_n}$ as the irv for $\xi(x_1)\cdot ... \cdot \xi(x_n) = 1$ (**I think?**), the authors note that $E_\xi [\xi(i)\xi(j)\xi(k)\xi(l)] = \delta_{ij}\delta_{kl} + (1 - \delta_{ijkl})(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})$ **(???)**
 and thus rewrite $E_\phi[\langle x,x' \rangle_\phi^2]$ as 
+
 $$E_\phi[\langle x,x' \rangle_\phi^2] = \sum_{i,k} x_i x_i' x_k x_k' + \sum_{i\neq j}x_i^2x_j'^2 E_h[\delta_{h(i),h(j)}] + \sum_{i\neq j} x_i x_i' x_j x_j' E_h[\delta_{h(i),h(j)}] \tag{9b}$$
 We have that $E_h[\delta_{h(i),h(j)}] = \frac{1}{m}, i \neq j$ (this is a reasonable assumption to make about $h$, at least in theory). Noting also that the first term in $(9\text{b})$ is $\langle x,x' \rangle^2$, we rewrite $(9\text{b})$ as 
+
 $$ \langle x,x' \rangle^2 + \frac{1}{m}\left( \sum_{i\neq j}x_i^2x_j'^2  + \sum_{i\neq j} x_i x_i' x_j x_j' \right) \tag{9c}$$
 And finally,
+
 $$ Var_\phi[\langle x,x'\rangle_\phi] = \frac{1}{m}\left( \sum_{i\neq j}x_i^2x_j'^2  + \sum_{i\neq j} x_i x_i' x_j x_j' \right) \tag{9d}$$
-since the squared inner product term is subtracted off by subtracting the squared mean from the second moment. This completes the proof of $(2.2)$. For unit vectors $x,x'$, we have immediately that the variance is $O(\frac{1}{m})$, which is $(2.3)$. 
+since the squared inner product term is subtracted off by subtracting the squared mean from the second moment. This completes the proof of $(2.2)$. For unit vectors $x,x'$, we have immediately that the variance is $O(\frac{1}{m})$, which is $(2.3)$, since the summations are bounded by 1.
 
 ___
+## **Concentration Inequalities**
+___
+### Aside: See [this](add_link) article about probability spaces, and some concentration inequalities 
