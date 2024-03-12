@@ -1,17 +1,18 @@
 ## **Useful Facts on Probability Spaces, Random Variables, and Concentration Inequalities**
 ____
-> # **Table of Contents**
-
-> ## Section 1: Probability Spaces, Common Distributions
-> ### 1.1 Probability Spaces
-> 1.1.1. defn\
-> 1.1.2. $\sigma$-algebra
-> ### 1.2 Random Variables, Expectation, Higher Moments
-> 1.2.1. defns.\
-> 1.2.2. Discrete Random Variables\
-> 1.2.3. Continuous Random Variables\
-> 1.2.4. Generating RVs\
-> 1.2.5. Applications
+## **Table of Contents**
+- Section 1: Probability Spaces, Common Distributions
+    - [1.1 basics](#a-namebasicsa-section-11-basics)
+        - 1.1.1 defns
+        - 1.1.2 $\sigma$-algebra
+        - [1.1.3 axioms of probability, definitions](#axioms-of-probability-113-hb-30)
+        - [1.1.4. union, intersection, conditioning and independence](#probability-facts-114-hb-31-40)
+        - [1.1.5. basic laws of probability](#basic-laws-of-probability-115)
+    - [1.2 Random Variables, Expectation, Higher Moments](#section-12-random-variables-expectation-higher-moments)
+        - 1.2.1 discrete and continuous random variables
+        - 1.2.2 expectation, variance, functions of a random variable
+        - 1.2.2 generating RVs
+        - 1.2.3 applications
 
 > ## Section 2: Convex Distances, Norms, and Related Inequalities
 > ### 2.1
@@ -32,11 +33,11 @@ ____
 >  SVD, norms, pseudoinverse, applications, complexity\
 >  Countsketch, applications\
 >  Hadamard\
->  Matrix Chernoff, applications\
+>  Matrix Chernoff, applications
 > ### 3.2 
->  balls in bins etc.\
+>  balls in bins etc. 
 > ### 3.3
->  perfect/universal/fun hashing\
+>  perfect/universal/fun hashing
 
 > ## Section 4: Probability Concentration Inequalities
 >  Markov's\
@@ -57,7 +58,7 @@ ___
 
 
 
-## Section 1.1: **Probability Spaces**
+## <a name="basics"></a> Section 1.1: Basics
 > A **probability space** $[1.1.1]$ is a triple $(\Omega,\Sigma,P)$, sample space, event space, probability measure, where $\Omega$ is a set, $\Sigma$ is a $\sigma$-field of subsets of $\Omega$, and $P$ is a non-negative measure on $\Sigma$ with $P(\Omega) = 1$ [Bollobás 1]
 
 \- in the simplest case, $\Omega$ is finite and $\Sigma$ is $\mathcal{P}(\Omega)$
@@ -66,41 +67,57 @@ ___
 
 \- we also have closure in the sigma algebra under complement and intersection by rewriting terms with complements and unions
     - the extreme cases being $\{\emptyset,X\}$ and $\mathcal{P}(X)$
-> #### **Axioms of Probability** [HB 30] 
+> #### **Axioms of Probability** $[1.1.3]$ [HB 30] 
 > 1. *Non-negativity*: $P[E] \geq 0$ for any event $E$
 > 2. *Additivity*: If $E_1, E_2, ...$ is a countable sequence of pairwise disjoint events, then 
 > $$P[E_1 \cup E_2 \cup ...] = \sum_i P[E_i]$$
 > 3. *Normalization*: $P[\Omega] = 1$
 
-> #### **Probability Facts** [HB 31-40]
+> #### **Probability Facts** $[1.1.4]$ [HB 31-40]
 > ##### <ins>**Union**
 > $$P[A \cup B] = P[A] + P[B] - P[A\cap B] \tag{defn, \textbf{HB Lemma 2.5}}$$
 >$$P[A \cup B] \leq P[A] + P[B] \tag{\textbf{Union Bound (UB)}, \textbf{Lemma 2.5}, Ax. 1}$$
 > ##### <ins>**Conditional Probability, Independence**
 > $$P[E \mid F] = \frac{P[E\cap F]}{P[F]} \tag{defn \textbf{Conditional Indep.}, assuming $P[F] > 0$}$$
-> If $P[F] \neq 0$, events $E,F$ are **independent** if $P[E \mid F] = P[E]$, that is, we gain no information on $E$ by knowing the outcome of $F$. This is equivalent to $P[E\cap F] = P[E]P[F]$ by simple substitutions. Furthermore, events $A_1, ..., A_n$ are independent if for any subset $S \in [n]$, ($[n] = \{1,...,n\})$, $$P\lbrack \bigcap_{i \in S} A_i \rbrack = \prod_{i \in S} P[A_i] \tag{defn. of independence for finite set}$$
+> If $P[F] \neq 0$, events $E,F$ are **independent** if $P[E \mid F] = P[E]$, that is, we gain no information on $E$ by knowing the outcome of $F$. This is equivalent to $P[E\cap F] = P[E]P[F]$ by simple substitutions. 
+> $$p_{X,Y}(x,y) = p_X(x) \cdot p_Y(y) \tag{defn. \textbf{Independence}, write $X\perp Y$} $$
+> Furthermore, events $A_1, ..., A_n$ are independent if for any subset $S \in [n]$, ($[n] = \{1,...,n\})$, $$P\lbrack \bigcap_{i \in S} A_i \rbrack = \prod_{i \in S} P[A_i] \tag{defn. of independence for finite set}$$
 > We also define the less strict, but very often sufficient, **pairwise independence** for $A_1, ..., A_n$ as follows: $$\forall i,j \text{   } P[A_i \cap A_j] = P[A_i]P[A_j] \tag{defn. \textbf{Pairwise Independence}}$$
-Finally, **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid C]P[B \mid C]$$
-
+Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid C]P[B \mid C]$$
 \- note that independence and conditional independence to not imply each other either way
-> #### **Basic Laws of Probability**
+
+> #### **Basic Laws of Probability** $[1.1.5]$
 > ##### <ins> **Law of Total Probability**
 > Let $\{F_i\}_{i\in[n]}$ be a partition of $\Omega$. Then $$P[E] = \sum_{i = 1}^n P[E \cap F_i] = \sum_{i=1}^n P[E \mid F_i]P[F_i]$$
 > \- *Proof:* Write $E$ as union over intersections with $F_i$, use mutal exclusivity. This law also holds if $\{F_i\}_i$ partitions $E$, and is extendable from $n$ to countably infinite
-> ##### <ins> **Law of Total Probability for Conditional Probability**
+> ##### <ins> **Law of Total Probability for Conditional Probability** 
 > $$P[A \mid B] = \sum_{i=1}^n P[A\mid B \cap F_i] \cdot P[F_i \mid B]$$
+> #### <ins> **Laws of Total Probability for Discrete RVs** </ins>   [**HB 59 Thm. 3.7**]
+> For an event $E$, we can write its probability by conditioning on RV $Y$ as follows:
+> $$P[E] = \sum_y P[E \cap Y = y] = \sum_y P[E \mid Y = y] f_Y(y)$$
+> For rvs $X,Y$, we can express $P[X = k]$ by conditioning on $Y$
+> $$P[X = k] = \sum_y P[X = k \cap Y = y] = \sum_y P[X = k \mid Y = y] \cdot f_Y(y)
+
 > ##### <ins> **Bayes Law**
 > Assuming $P[E] > 0$, $$P[F\mid E] = \frac{P[E\mid F]P[F]}{P[E]}$$
 > \- useful in basic problems or teasers
 
 ## Section 1.2: Random Variables, Expectation, Higher Moments
-- $[1.2.1]$ a **random variable** (rv) is a real-valued function of the outcome of an experiment involving randomness (HB 50)
-- For a discrete random variable (drv) $X$, we have the following:
-$$p_X(a) = P[X = a] \text{ where } \sum_x p_X(x) = 1 \tag{Probability Mass Function (pmf)}$$
-$$F_X(a) = P[X \leq a] = \sum_{x\leq a} p_X(x) \tag{Cumulative Distr. Function (cdf)}$$
-$$\bar{F}_X(a) = P[X > a] = 1 - F_X(a) \tag{Tail}$$
-For two drvs $X,Y$, we define the **joint probability mass function** $p_{X,Y}(x,y)$ as follows:
-$$p_{X,Y}(x,y) = P[X = x \cap Y = y]$$
+> \- $[1.2.1]$ a **random variable** (rv) is a real-valued function of the outcome of an experiment involving randomness (HB 50)\
+> \- **discrete random variables** (drvs) take on a value from a discrete set, while **continuous random variables** (crvs) take on a value from a continuous set\
+> \- For a discrete random variable $X$, we have the following:
+> $$p_X(a) = P[X = a] \text{ where } \sum_x p_X(x) = 1 \tag{Probability Mass Function (pmf)}$$
+> $$F_X(a) = P[X \leq a] = \sum_{x\leq a} p_X(x) \tag{Cumulative Distr. Function (cdf)}$$
+> $$\bar{F}_X(a) = P[X > a] = 1 - F_X(a) \tag{Tail}$$
+> For two drvs $X,Y$, we define the **joint probability mass function** $p_{X,Y}(x,y)$ as follows:
+> $$p_{X,Y}(x,y) = P[X = x \cap Y = y]$$
+> \- By the [*Law of Total Probability*](#ins-law-of-total-probability), we have $$p_X(x) = \sum_y p_{X,Y}(x,y) \tag{Marginal Probability Mass Function}$$
+> \- For a continuous random variable $X$, we have an analagous definition to the pmf, the **probability density function** (pdf):
+> $$P[a \leq X \leq b] = \int_a^b f_X(x)dx$$
+> \- naturally, we have normalization (we do in the discrete case as well, just replace $\int$ with $\sum$). For a crv $X$ with domain $D$, say $D = (-\infty,\infty)$, we have
+> $$\int_D f_X(x)dx = 1$$
+> \- the cdf and tails for crvs are analagous to the discrete case
+
 ## **Convex Distances and Related Inequalities** [source](https://jpmastrogiacomo.ca/files/Talagrand_convex_hull_concentration_inequality.pdf)
 - we are considering the probabilities of random variables landing in subsets of the sample space, where the sample space is itself a product of sample spaces
     - we want to understand the probability an RV in $\Omega$ is in the subset $A$
