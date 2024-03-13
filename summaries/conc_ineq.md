@@ -27,7 +27,7 @@ ____
             - [examples](#lemma-mathbbr-is-uncountable)
             - applications
 - Section 1: Introduction to Discrete and Continuous Random Variables
-    - [1.1 discrete random variables, expectation, higher moments](#section-11-discrete-random-variables-expectation-higher-moments)
+    - [1.1 discrete random variables, expectation, higher moments](#section-11-discrete-random-variables-expectation-higher-moments-span-classanchor-link-span)
         - 1.1.1 discrete random variables and combining rvs
             - pdf, cdf, tail
             - [combining RVs](#combining-random-variables)
@@ -153,7 +153,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > $$ \left(\bigcup_{i\in\mathcal{I}} A_i\right)  \cap B = \bigcup_{i\in\mathcal{I}}(A_i \cap B) \tag{int o union $=$ union o int.}$$
 > $$ (\bigcap\limits_{i\in\mathcal{I}} A_i)^c = \bigcup_{i\in\mathcal{I}}(A_i^c) \tag{\textbf{First DeMorgan's Law}, comp. of int. is un. of comp}$$
 > $$ (\bigcup\limits_{i\in\mathcal{I}} A_i)^c = \bigcap_{i\in\mathcal{I}}(A_i^c) \tag{\textbf{Second DeMorgan's Law}, comp. of un. is int. of comp}$$
-> #### <strong> **Functions**
+> #### <strong> **Functions** <span class="anchor-link"> {#strong-functions}</span>
 > a function $f$ between sets $A$ and $B$ is a subset of the *Cartesian product* of $A,B$: $f: A \rightarrow B \subseteq A \times B$. We call $A$ the domain, and $B$ the codomain. For each $a \in A$ that $f$ maps to a $b \in B$, we say $a$ is the *argument* and $b$ its *image*. 
 > #### **Injective Functions**
 > An **injective, or one-to-one** (1:1) function is one where unique arguments have unique images. In math, this means
@@ -172,13 +172,13 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > #### **Lemma: Countable Union of Countable Sets is Countable**
 > *Proof omitted*
 > TODO: add example: set of all algebraic number is countable (251)
-> #### <strong> **Theorem: Cantor's Diagonalization Argument**
+> #### <strong> **Theorem: Cantor's Diagonalization Argument** <span class="anchor-link"> {#strong-theorem-cantors-diagonalization-argument}</span>
 > TODO: add proof
 > #### **Lemma:** $\mathbb{R}$ **is Uncountable**
 > TODO: add proof
 > Power set uncountable, cartesian product of countable is countable, show transcendental numbers countable/uncountable
 
-## Section 1.1: Discrete Random Variables, Expectation, Higher Moments
+## Section 1.1: Discrete Random Variables, Expectation, Higher Moments <span class="anchor-link"> {#}</span>
 > \- $[1.1.1]$ a **random variable** (rv) is a real-valued function of the outcome of an experiment involving randomness (HB 50)\
 > \- **discrete random variables** (drvs) take on a value from a discrete set, while **continuous random variables** (crvs) take on a value from a continuous set\
 > \- For a discrete random variable $X$, we have the following:
@@ -192,6 +192,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > \- By the [*Law of Total Probability*](#strong-law-of-total-probability), we have $$p_X(x) = \sum_y p_{X,Y}(x,y) \tag{Marginalization}$$
 
 > #### <strong> **Expectation of Random Variables** $[1.1.2]$
+<span class="anchor-link"> {#section-11-discrete-random-variables-expectation-higher-moments-span-classanchor-link-section-11-discrete-random-variables-expectation-higher-moments-span-classanchor-link-strong-counting-cardinality-and-countability-strong}</span>
 > The **expectation** or the mean of the distribution from which $X$ is drawn of an rv $X$ defined over domain $D$, is: 
 > $$E[X] = \sum_{x\in D} x\cdot p_X(x) \tag{defn. \textbf{Expectation for drv}}$$
 > #### <strong> **Linearity of Expectation (Fundamental)**
