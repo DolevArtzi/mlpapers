@@ -1,28 +1,61 @@
 ## **Useful Facts on Probability Spaces, Random Variables, and Concentration Inequalities**
 ____
 ## **Table of Contents**
-- Section 1: Probability Spaces, Common Distributions
-    - [1.1 basics](#a-namebasicsa-section-11-basics)
+- Section 1: Foundations of Probability and Introduction to Random Variables
+    - [1.1 basics](#section-11-basics)
         - 1.1.1 defns
         - 1.1.2 $\sigma$-algebra
         - [1.1.3 axioms of probability, definitions](#axioms-of-probability-113-hb-30)
         - [1.1.4. union, intersection, conditioning and basic independence](#probability-facts-114-hb-31-40)
         - [1.1.5. basic laws of probability](#basic-laws-of-probability-115)
-    - [1.2 Random Variables, Expectation, Higher Moments](#section-12-random-variables-expectation-higher-moments)
+    - [1.2 discrete random variables, expectation, higher moments](#section-12-discrete-random-variables-expectation-higher-moments)
         - 1.2.1 discrete random variables and combining rvs
             - pdf, cdf, tail
             - [combining RVs](#combining-random-variables)
-        - [1.2.2 expectation, variance, functions of a random variable](#ins-expectation-of-random-variables-122)
+        - [1.2.2 expectation](#ins-expectation-of-random-variables-122)
             - [expectation of a product](#ins-expectation-of-a-product)
             - [conditional expectation](#ins-conditional-expectation)
             - [countable partitions/law of total expectation](#ins-countable-partitionslaw-of-total-expectation)
         - [1.2.3 variance, and 2nd moment measures](#ins-variance-and-higher-moments)
             - [std/squared coefficient of variation](#ins-other-second-moment-related-metrics)
+            - [covariance](#ins-covariance)
+    - [1.3 continuous random variables](#ins-continuous-random-variables)
+        - 1.3.1 CRVs: basics and moments
+        - [1.3.2 Law of Total Probability for CRVs](#ins-law-of-total-probability-for-continuous-crvs)
+        - [1.3.3 conditioning on CRVs](#add_link)
+    - 1.4 applications
+- Section 2: Probability Distributions
+    - [2.1 discrete distributions](#section-21-discrete-distributions)
+        - [2.1.1 bernoulli](#ins-bernoulli-distribution)
+        - [2.1.2 binomial, incl. like poisson](#ins-binomial-distribution)
+        - [2.1.3 geometric](#ins-geometric-distribution)
+        - [2.1.4 poisson](#ins-poisson-distribution)
+    - [2.2 continuous distributions]
+        - [2.2.1 uniform](#ins-uniform-distribution)
+        - [2.2.2 exponential, incl. applications](#ins-exponential-distribution)
+        - [2.2.3 normal, incl. approx](#ins-normal-distribution)
+        - [2.2.4 erlangs, application to queueing](#ins-erlang-distribution)
+        - [2.2.5 cauchy, applications, additivity]
+    - [2.3 generating RVs]
+        - [2.3.1 inverse transform]
+        - [2.3.2 box-mueller]
+        - [2.3.3 python for binomial with window]
+        - [2.3.4 applications, comments on complexity/implementation]
+    - [2.4 applications]
 
-        - 1.2.2 generating RVs
-        - 1.2.3 applications
-
-> ## Section 2: Convex Distances, Norms, and Related Inequalities
+-  Section 2: Probability Concentration Inequalities
+    - Markov's
+    - Chebyshev's
+    - Hoeffding's
+    - Chernoff's, applications
+    - CLT, WLLN, SLLN
+    - Pretty Chernoff Bounds
+    - misc. useful one: sterlings, normal approximations, confidence intervals
+>  Tail bounds, e.g. Poissons, Pareto, applications
+    - Random Graphs stuff
+- Section 3: Markov Chains
+- Section 4: Queueing Basics
+> ## Section 5: Convex Distances, Norms, and Related Inequalities
 > ### 2.1
 > 2.1.1. Hamming variants\
 > 2.1.2. Convex Hull/Hypercube\
@@ -36,7 +69,7 @@ ____
 > 2.2.5 Johnson-Lindenstrauss\
 > 2.2.6 Bernstein's Inequality
 
-> ## Section 3: Linear Algebra, Sketching, Hashing
+> ## Section 6: Linear Algebra, Sketching, Hashing
 > ### 3.1
 >  SVD, norms, pseudoinverse, applications, complexity\
 >  Countsketch, applications\
@@ -46,16 +79,6 @@ ____
 >  balls in bins etc. 
 > ### 3.3
 >  perfect/universal/fun hashing
-
-> ## Section 4: Probability Concentration Inequalities
->  Markov's\
->  Chebyshev's\
->  Random Graphs stuff\
->  Hoeffding's\
->  Chernoff's, applications\
->  CLT, WLLN, SLLN\
->  Pretty Chernoff Bounds\
->  Tail bounds, e.g. Poissons, Pareto, applications
 ___
 ### Sources
 \- Mor's book(s) Pnc, Queueing
@@ -66,7 +89,7 @@ ___
 
 
 
-## <a name="basics"></a> Section 1.1: Basics
+## Section 1.1: Basics
 > A **probability space** $[1.1.1]$ is a triple $(\Omega,\Sigma,P)$, sample space, event space, probability measure, where $\Omega$ is a set, $\Sigma$ is a $\sigma$-field of subsets of $\Omega$, and $P$ is a non-negative measure on $\Sigma$ with $P(\Omega) = 1$ [Bollobás 1]
 
 \- in the simplest case, $\Omega$ is finite and $\Sigma$ is $\mathcal{P}(\Omega)$
@@ -104,24 +127,18 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > For an event $E$, we can write its probability by conditioning on RV $Y$ as follows:
 > $$P[E] = \sum_y P[E \cap Y = y] = \sum_y P[E \mid Y = y] f_Y(y)$$
 > For rvs $X,Y$, we can express $P[X = k]$ by conditioning on $Y$
-> $$P[X = k] = \sum_y P[X = k \cap Y = y] = \sum_y P[X = k \mid Y = y] \cdot f_Y(y)
-
+> $$P[X = k] = \sum_y P[X = k \cap Y = y] = \sum_y P[X = k \mid Y = y] \cdot f_Y(y)$$
 > ##### <ins> **Bayes Law**
 > Assuming $P[E] > 0$, $$P[F\mid E] = \frac{P[E\mid F]P[F]}{P[E]}$$
 > \- useful in basic problems or teasers
 
-## Section 1.2: Random Variables, Expectation, Higher Moments
+## Section 1.2: Discrete Random Variables, Expectation, Higher Moments
 > \- $[1.2.1]$ a **random variable** (rv) is a real-valued function of the outcome of an experiment involving randomness (HB 50)\
 > \- **discrete random variables** (drvs) take on a value from a discrete set, while **continuous random variables** (crvs) take on a value from a continuous set\
 > \- For a discrete random variable $X$, we have the following:
 > $$p_X(a) = P[X = a] \text{ where } \sum_x p_X(x) = 1 \tag{Probability Mass Function (pmf)}$$
 > $$F_X(a) = P[X \leq a] = \sum_{x\leq a} p_X(x) \tag{Cumulative Distr. Function (cdf)}$$
 > $$\bar{F}_X(a) = P[X > a] = 1 - F_X(a) \tag{Tail}$$
-> \- For a continuous random variable $X$, we have an analagous definition to the pmf, the **probability density function** (pdf):
-> $$P[a \leq X \leq b] = \int_a^b f_X(x)dx$$
-> \- naturally, we have normalization (we do in the discrete case as well, just replace $\int$ with $\sum$). For a crv $X$ with domain $D$, say $D = (-\infty,\infty)$, we have
-> $$\int_D f_X(x)dx = 1$$
-> \- the cdf and tails for crvs are analagous to the discrete case
 
 > #### **Combining Random Variables**
 > For two drvs $X,Y$, we define the **joint probability mass function** $p_{X,Y}(x,y)$ as follows:
@@ -166,7 +183,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > $$\sum_{x\in\mathcal{X}}\sum_{y\in\mathcal{Y}} x P[X = x \mid Y = y] P[Y = y] \tag{3}$$
 > So far, $(1),(2)$ were by definition, and $(3)$ just switched the order of summation, which you can usually do with finite sums, but I'll point the interested reader to [Fubini's in Discrete Math](https://web.math.ucsb.edu/~cmart07/fubini.pdf). Continuing, we apply the [defn. of conditional probability](#probability-facts-114-hb-31-40) and pull $x$ out from the inner sum to obtain:
 > $$E[E[X\mid Y]] = \sum_{x\in\mathcal{X}} x \sum_{y\in \mathcal{Y}} P[X = x \cap Y = y] \tag{4}$$
-> We marginalize to and notice that this is just $E[X]$:
+> We marginalize and notice that this is just $E[X]$:
 > $$\sum_{x \in \mathcal{X}} x P[X = x] \tag{5, qed.} = E[X]$$
 > Finally, we'll generalize [$(*)$](#ins-countable-partitionslaw-of-total-expectation):
 > $$E[g(X)] = \sum_y E[g(X) \mid Y = y]P[Y = y] \tag{\textbf{Expectation of Function via Conditioning}}$$
@@ -180,7 +197,8 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > Let $X$ and $Y$ be rvs such that $X\perp Y$. Then
 > $$\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y)$$
 > This naturally generalizes from 2 to $n$.\
-> *Proof*: Write out the definitions, use [independence via expectation](#ins-expectation-of-a-product) 
+> *Proof*: Write out the definitions, use [independence via expectation](#ins-expectation-of-a-product) \
+> \- TODO: add sums vs. copies consideration
 
 > #### <ins> **Other Second-Moment Related Metrics**
 > \- the **standard deviation** of $X$ is defined as 
@@ -188,9 +206,109 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > \- the **squared coefficient of variation** of $X$ is defined as
 > $$C^2_X = \frac{\text{Var}(X)}{E[X^2]}$$
 > This is often useful, as it provides a normalized measure of $X$'s deviation from its mean.
+> #### <ins> **Covariance**
+> The **covariance** of rvs $X,Y$ is defined in two ways as follows:
+> $$\text{Cov}(X,Y) = E[(X - E[X])(Y - E[Y])] \tag{first defn. of covariance}$$
+> $$\text{Cov}(X,Y) = E[XY] - E[X]E[Y] \tag{second defn. of covariance}$$
+> *Proof*: write it out, use independence\
+> \- note that the sign of covariance indicates the direction of correlation between $X$ and $Y$
+
+
+> #### <ins> **Continuous Random Variables**
+> \- For a continuous random variable $X$, we have an analagous definition to the pmf, the **probability density function** (pdf):
+> $$P[a \leq X \leq b] = \int_a^b f_X(x)dx$$
+> \- naturally, we have normalization (we do in the discrete case as well, just replace $\int$ with $\sum$). For a crv $X$ with domain $D$, say $D = (-\infty,\infty)$, we have
+> $$\int_D f_X(x)dx = 1$$
+> \- the cdf and tails for crvs are analagous to the discrete case
+> #### <ins> **Moments of a CRV**
+> The **expected value of a crv** is $$E[X] = \int_{D} x \cdot f_X(x)dx$$
+> The **$k^{th}$ moment** is $$E[X^k] = \int_{D} x^k \cdot f_X(x)dx$$ 
+> And similarly, $$E[g(X)] = \int_{D} g(x)\cdot f_X(x)dx$$
+> Finally, we have the **variance of a crv** $$\text{Var}(X) = \int_D (x-E[X])^2 f_X(x)dx$$
+
+> #### <ins> **Law of Total Probability for Continuous CRVs**
+> $$P[A] = \int_{D} P[A \mid X = x] f_X(x) dx \tag{LOTP for CRV, pt. 1}$$
+> - **TODO**: add HB ch. 8 and ch. 7 from pg. 148 on
+
+
+
+
+
+## Section 2.1: Discrete Distributions
+> #### <ins> **Bernoulli distribution**
+> The Bernoulli distribution represents the outcome of a coin flip with probability $p$ of landing heads. We write $X \sim\text{Bernoulli}(p)$ ($\sim$ means "is distributed as").
+> The **pmf of Bernoulli** is as follows:
+> $$P[X = 1] = p, P[X = 0] = 1 - p$$
+> The **variance of Bernoulli** is 
+> $$\text{Var}(\text{Bernoulli}(p)) = p(1-p) \tag{mean is $p$, second moment is still $p$}$$
+
+> #### <ins> **Binomial distribution**
+> The **binomial distribution** is parametrized by $n$ and $p$, and it represents the sum of $n$ independent $p$-coin flips, the sum of $n$ independent $\text{Bernoulli}(p)$'s.
+> $$P[\text{Binomial}(n,p) = k] = {n\choose k}p^k (1-p)^{n-k} \tag{$k \in [0,n]$}$$
+> This is the number of ways to arrange your $k$ successes, times the probability of having exactly $k$ successes in $n$ indep. trials. The **expected value of binomial** is $E[X] = np$ by linearity. Likewise, the **variance of binomial** is easily computed by [linearity of variance for independent rvs](#ins-theorem-linearity-of-variance) to be $n\cdot \text{Var}(\text{Bernoulli}(p)) = np(1-p)$. There isn't an easy way to express the cdf, but we'll see how to compute it in a straightforward way soon
+
+> #### <ins> **Geometric distribution**
+> The **geometric distribution** represents the number of trials until success with independent probability $p$ of success per round. Thus, note that it's defined on $[1,\infty)$.
+> $$P[\text{Geom(p)} = k] = (1-p)^{k-1}\cdot p$$
+> The **cdf of geometric** is defined as expected: $$P[\text{Geom}(p) > k] = (1-p)^k \tag{$k$ failures is all we know}$$
+> The calculations for the first and second moments of a geometric are instructive for two very different methods we often use. First, we'll just list the results.
+> $$E[\text{Geom}(p)] = \frac{1}{1-p} \tag{\textbf{mean of geometric}}$$
+> $$E[\text{Var}(\text{Geom}(p))] = \frac{p}{(1-p)^2} \tag{\textbf{variance of geometric}}$$
+> comments
+
+> #### <ins> **Poisson distribution**
+> explanation\
+> pmf\
+> optional cdf/tail\
+> mean\
+> variance\
+> comments
+## Section 2.2: Continuous Distributions
+> #### <ins> **Uniform distribution**
+> explanation\
+> pmf\
+> optional cdf/tail\
+> mean\
+> variance\
+> comments
+
+> #### <ins> **Exponential distribution**
+> explanation\
+> pmf\
+> optional cdf/tail\
+> mean\
+> variance\
+> comments
+
+> #### <ins> **Normal distribution**
+> explanation\
+> pmf\
+> optional cdf/tail\
+> mean\
+> variance\
+> comments
+
+> #### <ins> **Erlang distribution**
+> explanation\
+> pmf\
+> optional cdf/tail\
+> mean\
+> variance\
+> comments
+
+> #### <ins> **Hyperexponential distribution**
+> explanation\
+> pmf\
+> optional cdf/tail\
+> mean\
+> variance\
+> comments
+
+
 ## **Convex Distances and Related Inequalities** [source](https://jpmastrogiacomo.ca/files/Talagrand_convex_hull_concentration_inequality.pdf)
 - we are considering the probabilities of random variables landing in subsets of the sample space, where the sample space is itself a product of sample spaces
     - we want to understand the probability an RV in $\Omega$ is in the subset $A$
+
 ### Convex Distance
 #### **First Definition**
 Let $x,y \in \Omega$ be length-$n$ vectors. The **Hamming Distance** of $x,y$ is defined as: $$d(x,y) = \sum_{i=1}^n \mathbf{1}_{x_i \neq x_j} \tag{the number of elements that differ}$$
