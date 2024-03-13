@@ -2,11 +2,6 @@
 #### `with applications in probability, algorithms, performance modeling/Markov chains and queueing theory, reinforcement learning, theoretical computer science, linear algebra, and machine learning`
 ### *github.com/DolevArtzi*
 ### *Spring 2024*
-<style>
-.anchor-link {
-    display: none;
-}
-</style>
 ____
 ## **Table of Contents**
 - Section 0: Brief Introduction Probability Spaces, Sets, and Measure
@@ -18,42 +13,42 @@ ____
         - [0.1.5. basic laws of probability](#basic-laws-of-probability-015)
     - [0.2 set theory basics](#section-02-sets)
         - 0.2.1 useful identities
-        - [0.2.2 functions](#strong-functions)
+        - [0.2.2 functions](#ins-functions)
             - injective
             - surjective
-        - [0.2.3 counting](#-counting-cardinality-and-countability---strong-counting-cardinality-and-countability-strong)
+        - [0.2.3 counting](#ins-counting-cardinality-and-countabilityins)
             - countability
-            - [Cantor's diagonalization argument](#strong-theorem-cantors-diagonalization-argument)
+            - [Cantor's diagonalization argument](#ins-theorem-cantors-diagonalization-argument)
             - [examples](#lemma-mathbbr-is-uncountable)
             - applications
 - Section 1: Introduction to Discrete and Continuous Random Variables
-    - [1.1 discrete random variables, expectation, higher moments](#section-11-discrete-random-variables-expectation-higher-moments--)
+    - [1.1 discrete random variables, expectation, higher moments](#section-11-discrete-random-variables-expectation-higher-moments)
         - 1.1.1 discrete random variables and combining rvs
             - pdf, cdf, tail
             - [combining RVs](#combining-random-variables)
-        - [1.1.2 expectation](#-expectation-of-random-variables-112)
-            - [expectation of a product](#-expectation-of-a-product)
-            - [conditional expectation](#-conditional-expectation)
-            - [countable partitions/law of total expectation](#-countable-partitionslaw-of-total-expectation)
-        - [1.1.3 variance, and 2nd moment measures](#-variance-and-higher-moments)
-            - [std/squared coefficient of variation](#-other-second-moment-related-metrics)
-            - [covariance](#-covariance)
-    - [1.2 continuous random variables](#-continuous-random-variables)
+        - [1.1.2 expectation](#ins-expectation-of-random-variables-112)
+            - [expectation of a product](#ins-expectation-of-a-product)
+            - [conditional expectation](#ins-conditional-expectation)
+            - [countable partitions/law of total expectation](#ins-countable-partitionslaw-of-total-expectation)
+        - [1.1.3 variance, and 2nd moment measures](#ins-variance-and-higher-moments)
+            - [std/squared coefficient of variation](#ins-other-second-moment-related-metrics)
+            - [covariance](#ins-covariance)
+    - [1.2 continuous random variables](#ins-continuous-random-variables)
         - 1.3.1 CRVs: basics and moments
-        - [1.2.2 Law of Total Probability for CRVs](#-law-of-total-probability-for-continuous-crvs)
+        - [1.2.2 Law of Total Probability for CRVs](#ins-law-of-total-probability-for-continuous-crvs)
         - [1.2.3 conditioning on CRVs](#add_link)
     - 1.3 applications
 - Section 2: Probability Distributions
     - [2.1 discrete distributions](#section-21-discrete-distributions)
-        - [2.1.1 bernoulli](#-bernoulli-distribution)
-        - [2.1.2 binomial, incl. like poisson](#-binomial-distribution)
-        - [2.1.3 geometric](#-geometric-distribution)
-        - [2.1.4 poisson](#-poisson-distribution)
+        - [2.1.1 bernoulli](#ins-bernoulli-distribution)
+        - [2.1.2 binomial, incl. like poisson](#ins-binomial-distribution)
+        - [2.1.3 geometric](#ins-geometric-distribution)
+        - [2.1.4 poisson](#ins-poisson-distribution)
     - [2.2 continuous distributions]
-        - [2.2.1 uniform](#-uniform-distribution)
-        - [2.2.2 exponential, incl. applications](#-exponential-distribution)
-        - [2.2.3 normal, incl. approx](#-normal-distribution)
-        - [2.2.4 erlangs, application to queueing](#-erlang-distribution)
+        - [2.2.1 uniform](#ins-uniform-distribution)
+        - [2.2.2 exponential, incl. applications](#ins-exponential-distribution)
+        - [2.2.3 normal, incl. approx](#ins-normal-distribution)
+        - [2.2.4 erlangs, application to queueing](#ins-erlang-distribution)
         - [2.2.5 cauchy, applications, additivity]
     - [2.3 generating RVs]
         - [2.3.1 inverse transform]
@@ -120,10 +115,10 @@ ___
 > $$P[E_1 \cup E_2 \cup ...] = \sum_i P[E_i]$$
 > 3. *Normalization*: $P[\Omega] = 1$
 > #### **Probability Facts** $[0.1.4]$ [HB 31-40]
-> ##### <strong>**Union**
+> ##### <ins>**Union**
 > $$P[A \cup B] = P[A] + P[B] - P[A\cap B] \tag{defn, \textbf{HB Lemma 2.5}}$$
 >$$P[A \cup B] \leq P[A] + P[B] \tag{\textbf{Union Bound (UB)}, \textbf{Lemma 2.5}, Ax. 1}$$
-> ##### <strong>**Conditional Probability, Independence**
+> ##### <ins>**Conditional Probability, Independence**
 > $$P[E \mid F] = \frac{P[E\cap F]}{P[F]} \tag{defn \textbf{Conditional Indep.}, assuming $P[F] > 0$}$$
 > If $P[F] \neq 0$, events $E,F$ are **independent** if $P[E \mid F] = P[E]$, that is, we gain no information on $E$ by knowing the outcome of $F$. This is equivalent to $P[E\cap F] = P[E]P[F]$ by simple substitutions. 
 > $$p_{X,Y}(x,y) = p_X(x) \cdot p_Y(y) \tag{defn. \textbf{Independence}, write $X\perp Y$} $$
@@ -133,27 +128,27 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 \- note that independence and conditional independence to not imply each other either way
 
 > #### **Basic Laws of Probability** $[0.1.5]$
-> ##### <strong> **Law of Total Probability**
+> ##### <ins> **Law of Total Probability**
 > Let $\{F_i\}_{i\in[n]}$ be a partition of $\Omega$. Then $$P[E] = \sum_{i = 1}^n P[E \cap F_i] = \sum_{i=1}^n P[E \mid F_i]P[F_i]$$
 > \- *Proof:* Write $E$ as union over intersections with $F_i$, use mutal exclusivity. This law also holds if $\{F_i\}_i$ partitions $E$, and is extendable from $n$ to countably infinite
-> ##### <strong> **Law of Total Probability for Conditional Probability** 
+> ##### <ins> **Law of Total Probability for Conditional Probability** 
 > $$P[A \mid B] = \sum_{i=1}^n P[A\mid B \cap F_i] \cdot P[F_i \mid B]$$
-> #### <strong> **Laws of Total Probability for Discrete RVs** <\ins>   [**HB 59 Thm. 3.7**]
+> #### <ins> **Laws of Total Probability for Discrete RVs** </ins>   [**HB 59 Thm. 3.7**]
 > For an event $E$, we can write its probability by conditioning on RV $Y$ as follows:
 > $$P[E] = \sum_y P[E \cap Y = y] = \sum_y P[E \mid Y = y] f_Y(y)$$
 > For rvs $X,Y$, we can express $P[X = k]$ by conditioning on $Y$
 > $$P[X = k] = \sum_y P[X = k \cap Y = y] = \sum_y P[X = k \mid Y = y] \cdot f_Y(y)$$
-> ##### <strong> **Bayes Law**
+> ##### <ins> **Bayes Law**
 > Assuming $P[E] > 0$, $$P[F\mid E] = \frac{P[E\mid F]P[F]}{P[E]}$$
 > \- useful in basic problems or teasers
 
 ## Section 0.2: Sets
-> #### <strong> **Useful Set Identities**
+> #### <ins> **Useful Set Identities**
 > $$ \left(\bigcap_{i\in\mathcal{I}} A_i\right)  \cup B = \bigcap_{i\in\mathcal{I}}(A_i \cup B) \tag{union o int. $=$ int o union}$$
 > $$ \left(\bigcup_{i\in\mathcal{I}} A_i\right)  \cap B = \bigcup_{i\in\mathcal{I}}(A_i \cap B) \tag{int o union $=$ union o int.}$$
 > $$ (\bigcap\limits_{i\in\mathcal{I}} A_i)^c = \bigcup_{i\in\mathcal{I}}(A_i^c) \tag{\textbf{First DeMorgan's Law}, comp. of int. is un. of comp}$$
 > $$ (\bigcup\limits_{i\in\mathcal{I}} A_i)^c = \bigcap_{i\in\mathcal{I}}(A_i^c) \tag{\textbf{Second DeMorgan's Law}, comp. of un. is int. of comp}$$
-> #### <strong> **Functions** <span class="anchor-link"> {#strong-functions}</span>
+> #### <ins> **Functions**
 > a function $f$ between sets $A$ and $B$ is a subset of the *Cartesian product* of $A,B$: $f: A \rightarrow B \subseteq A \times B$. We call $A$ the domain, and $B$ the codomain. For each $a \in A$ that $f$ maps to a $b \in B$, we say $a$ is the *argument* and $b$ its *image*. 
 > #### **Injective Functions**
 > An **injective, or one-to-one** (1:1) function is one where unique arguments have unique images. In math, this means
@@ -162,8 +157,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > A **surjective, or onto** function is one where each element in the codomain is mapped to by at least one argument in $f$. In math,
 > $$f \textbf{  surjective  } \text{ means  }\forall b\text{  } \in \text{codomain}(f), \text{  } \exists a \in \text{domain}(f) \text{ s.t. } f(a) = b$$
 > A function which is both 1:1 and onto is called a **bijection** (write $f: A \leftrightarrow B$), which means an inverse, $f^{-1}$ is well-defined since the mapping is unique and the entire codomain is covered [[source](https://www.ee.iitm.ac.in/~krishnaj/EE5110_files/notes/lecture1_set_theory.pdf)].
-
- ####  <strong> **Counting: Cardinality and Countability** </strong> <span class="anchor-link"> {#strong-counting-cardinality-and-countability-strong}</span>
+> #### <ins> **Counting: Cardinality and Countability**</ins> 
 > ##### [[source](https://www.ee.iitm.ac.in/~krishnaj/EE5110_files/notes/lecture3_cardinality.pdf)]
 > \- Two sets are **equicardinal** (have the same cardinality) if there exists a bijection between them.
 > $$\exists f:A \hookrightarrow B \text{ injective }  \implies |B| \geq |A|$$
@@ -172,13 +166,13 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > #### **Lemma: Countable Union of Countable Sets is Countable**
 > *Proof omitted*
 > TODO: add example: set of all algebraic number is countable (251)
-> #### <strong> **Theorem: Cantor's Diagonalization Argument** <span class="anchor-link"> {#strong-theorem-cantors-diagonalization-argument}</span>
+> #### <ins> **Theorem: Cantor's Diagonalization Argument**
 > TODO: add proof
 > #### **Lemma:** $\mathbb{R}$ **is Uncountable**
 > TODO: add proof
 > Power set uncountable, cartesian product of countable is countable, show transcendental numbers countable/uncountable
 
-## Section 1.1: Discrete Random Variables, Expectation, Higher Moments <span class="anchor-link"> {#section-11-discrete-random-variables-expectation-higher-moments--}</span>
+## Section 1.1: Discrete Random Variables, Expectation, Higher Moments
 > \- $[1.1.1]$ a **random variable** (rv) is a real-valued function of the outcome of an experiment involving randomness (HB 50)\
 > \- **discrete random variables** (drvs) take on a value from a discrete set, while **continuous random variables** (crvs) take on a value from a continuous set\
 > \- For a discrete random variable $X$, we have the following:
@@ -189,38 +183,37 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > #### **Combining Random Variables**
 > For two drvs $X,Y$, we define the **joint probability mass function** $p_{X,Y}(x,y)$ as follows:
 > $$p_{X,Y}(x,y) = P[X = x \cap Y = y]$$
-> \- By the [*Law of Total Probability*](#strong-law-of-total-probability), we have $$p_X(x) = \sum_y p_{X,Y}(x,y) \tag{Marginalization}$$
+> \- By the [*Law of Total Probability*](#ins-law-of-total-probability), we have $$p_X(x) = \sum_y p_{X,Y}(x,y) \tag{Marginalization}$$
 
-> #### <strong> **Expectation of Random Variables** $[1.1.2]$
-<span class="anchor-link"> {#section-11-discrete-random-variables-expectation-higher-moments-span-classanchor-link-section-11-discrete-random-variables-expectation-higher-moments-span-classanchor-link-strong-counting-cardinality-and-countability-strong}</span>
+> #### <ins> **Expectation of Random Variables** $[1.1.2]$
 > The **expectation** or the mean of the distribution from which $X$ is drawn of an rv $X$ defined over domain $D$, is: 
 > $$E[X] = \sum_{x\in D} x\cdot p_X(x) \tag{defn. \textbf{Expectation for drv}}$$
-> #### <strong> **Linearity of Expectation (Fundamental)**
+> #### <ins> **Linearity of Expectation (Fundamental)**
 > For any rvs $X$ and $Y$, 
 > $$E[X+Y] = E[X] + E[Y]$$
 > *Proof*: Write the summations out, split into two double sums, then pull the variable out from the first sum **[HB 69]**.
-> #### <strong> **Alternative Definition of Expectation**
+> #### <ins> **Alternative Definition of Expectation**
 > Let the domain of $X$, $D(x),$ be $\mathbb{N}$. Then:
 > $$E[X] = \sum_{x=0}^{\infty} P[X>x] \tag{Summing the Tail}$$
-> #### <strong> **Expectation of a Product**
+> #### <ins> **Expectation of a Product**
 > Let $X,Y$ be rvs. The **expectation of $XY$** is defined as follows:
 > $$E[XY] = \sum_x\sum_y xy \text{ } p_{X,Y}(x,y)$$
 > We also have that $X \perp Y \implies$ $E[XY] = E[X]E[Y]$ (**independence via expectation**)
-> #### <strong> **Expectation of a Function/Law of the Unconscious Statistician**
+> #### <ins> **Expectation of a Function/Law of the Unconscious Statistician**
 > $$E[g(X)] = \sum_x g(x) \cdot p_X(x) \tag{\textbf{Expectation of a Function}}$$
 
-> #### <strong> **Conditional Expectation** 
+> #### <ins> **Conditional Expectation** 
 > Let $X$ be a drv and let $\Omega$ be countable, including event $A : P[A] > 0$. Then $p_{X\mid A}$ is the **conditional pmf** of $X$ given $A$:
 > $$p_{X\mid A}(x) = P[X = x | A] = \frac{P[X = x \cap A]}{P[A]} $$
 > This allows us to define the **conditional expectation of $X$ given $A$**:
 > $$E[X\mid A] = \sum_{x \in A} x p_{X\mid A}(x)$$
 
-> #### <strong> **Countable Partitions/Law of Total Expectation**
+> #### <ins> **Countable Partitions/Law of Total Expectation**
 > First, we'll give the important special case **[HB 79 Thm. 4.22]**: if $F_1, F_2, ...$ is a countable partition of $\Omega$, then:
 > $$E[X] = \sum_{i=1}^{\infty} E[X \mid F_i] P[F_i] \tag{$(*)$ \textbf{Expectation via Conditioning}}$$
 > Given a discrete rv $Y$, if we treat $Y = y$ as an event, then we can write:
 > $$E[X] = \sum_y E[X \mid Y = y]\cdot P[Y = y] $$
-> *Proof*: Write out the sum, flip order of summation, pull $y$ terms through, apply [defn. of conditional expectation](#strong-conditional-expectation)\
+> *Proof*: Write out the sum, flip order of summation, pull $y$ terms through, apply [defn. of conditional expectation](#ins-conditional-expectation)\
 > Now, we'll give the **Law of Total Expectation**:\
 > Let $X,Y$ be rvs on the same [probability space](#a-namebasicsa-section-11-basics), where $X$ takes values in $\mathcal{X}$, and $Y$ in $\mathcal{Y}$. Then:
 > $$E[E[X\mid Y]] = E[X] \tag{\textbf{Law of Total Expectation}}$$
@@ -232,28 +225,28 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > $$E[E[X\mid Y]] = \sum_{x\in\mathcal{X}} x \sum_{y\in \mathcal{Y}} P[X = x \cap Y = y] \tag{4}$$
 > We marginalize and notice that this is just $E[X]$:
 > $$\sum_{x \in \mathcal{X}} x P[X = x] \tag{5, qed.} = E[X]$$
-> Finally, we'll generalize [$(*)$](#strong-countable-partitionslaw-of-total-expectation):
+> Finally, we'll generalize [$(*)$](#ins-countable-partitionslaw-of-total-expectation):
 > $$E[g(X)] = \sum_y E[g(X) \mid Y = y]P[Y = y] \tag{\textbf{Expectation of Function via Conditioning}}$$
 
-> #### <strong> **Variance and Higher Moments**
+> #### <ins> **Variance and Higher Moments**
 > The $k^{th}$ moment of the rv $X$ is $E[X^k]$. Usually, we only care about the first ($E[X]$) and second moments, and we use the second moment in the form of **variance**, which measures the unnormalized deviation of $X$ from its mean. There are several definitions of variance, all of which are useful in different contexts. 
 > $$\text{Var}(x) = E[(X - E[X])^2] \tag{first defn. of variance}$$
 > $$\text{Var}(x) = E[X^2] - E[X]^2 \tag{second defn. of variance}$$
-> *Proof*: [Linearity of Expectation](#strong-linearity-of-expectation-fundamental)
-> #### <strong> **Theorem: Linearity of Variance**
+> *Proof*: [Linearity of Expectation](#ins-linearity-of-expectation-fundamental)
+> #### <ins> **Theorem: Linearity of Variance**
 > Let $X$ and $Y$ be rvs such that $X\perp Y$. Then
 > $$\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y)$$
 > This naturally generalizes from 2 to $n$.\
-> *Proof*: Write out the definitions, use [independence via expectation](#strong-expectation-of-a-product) \
+> *Proof*: Write out the definitions, use [independence via expectation](#ins-expectation-of-a-product) \
 > \- TODO: add sums vs. copies consideration
 
-> #### <strong> **Other Second-Moment Related Metrics**
+> #### <ins> **Other Second-Moment Related Metrics**
 > \- the **standard deviation** of $X$ is defined as 
 > $$\sigma_X = \text{std}(X) = \sqrt{\text{Var}(X)}$$
 > \- the **squared coefficient of variation** of $X$ is defined as
 > $$C^2_X = \frac{\text{Var}(X)}{E[X^2]}$$
 > This is often useful, as it provides a normalized measure of $X$'s deviation from its mean.
-> #### <strong> **Covariance**
+> #### <ins> **Covariance**
 > The **covariance** of rvs $X,Y$ is defined in two ways as follows:
 > $$\text{Cov}(X,Y) = E[(X - E[X])(Y - E[Y])] \tag{first defn. of covariance}$$
 > $$\text{Cov}(X,Y) = E[XY] - E[X]E[Y] \tag{second defn. of covariance}$$
@@ -261,19 +254,19 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > \- note that the sign of covariance indicates the direction of correlation between $X$ and $Y$
 
 
-> #### <strong> **Continuous Random Variables**
+> #### <ins> **Continuous Random Variables**
 > \- For a continuous random variable $X$, we have an analagous definition to the pmf, the **probability density function** (pdf):
 > $$P[a \leq X \leq b] = \int_a^b f_X(x)dx$$
 > \- naturally, we have normalization (we do in the discrete case as well, just replace $\int$ with $\sum$). For a crv $X$ with domain $D$, say $D = (-\infty,\infty)$, we have
 > $$\int_D f_X(x)dx = 1$$
 > \- the cdf and tails for crvs are analagous to the discrete case
-> #### <strong> **Moments of a CRV**
+> #### <ins> **Moments of a CRV**
 > The **expected value of a crv** is $$E[X] = \int_{D} x \cdot f_X(x)dx$$
 > The **$k^{th}$ moment** is $$E[X^k] = \int_{D} x^k \cdot f_X(x)dx$$ 
 > And similarly, $$E[g(X)] = \int_{D} g(x)\cdot f_X(x)dx$$
 > Finally, we have the **variance of a crv** $$\text{Var}(X) = \int_D (x-E[X])^2 f_X(x)dx$$
 
-> #### <strong> **Law of Total Probability for Continuous CRVs**
+> #### <ins> **Law of Total Probability for Continuous CRVs**
 > $$P[A] = \int_{D} P[A \mid X = x] f_X(x) dx \tag{LOTP for CRV, pt. 1}$$
 > - **TODO**: add HB ch. 8 and ch. 7 from pg. 148 on
 
@@ -282,19 +275,19 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 
 
 ## Section 2.1: Discrete Distributions
-> #### <strong> **Bernoulli distribution**
+> #### <ins> **Bernoulli distribution**
 > The Bernoulli distribution represents the outcome of a coin flip with probability $p$ of landing heads. We write $X \sim\text{Bernoulli}(p)$ ($\sim$ means "is distributed as").
 > The **pmf of Bernoulli** is as follows:
 > $$P[X = 1] = p, P[X = 0] = 1 - p$$
 > The **variance of Bernoulli** is 
 > $$\text{Var}(\text{Bernoulli}(p)) = p(1-p) \tag{mean is $p$, second moment is still $p$}$$
 
-> #### <strong> **Binomial distribution**
+> #### <ins> **Binomial distribution**
 > The **binomial distribution** is parametrized by $n$ and $p$, and it represents the sum of $n$ independent $p$-coin flips, the sum of $n$ independent $\text{Bernoulli}(p)$'s.
 > $$P[\text{Binomial}(n,p) = k] = {n\choose k}p^k (1-p)^{n-k} \tag{$k \in [0,n]$}$$
-> This is the number of ways to arrange your $k$ successes, times the probability of having exactly $k$ successes in $n$ indep. trials. The **expected value of binomial** is $E[X] = np$ by linearity. Likewise, the **variance of binomial** is easily computed by [linearity of variance for independent rvs](#strong-theorem-linearity-of-variance) to be $n\cdot \text{Var}(\text{Bernoulli}(p)) = np(1-p)$. There isn't an easy way to express the cdf, but we'll see how to compute it in a straightforward way soon
+> This is the number of ways to arrange your $k$ successes, times the probability of having exactly $k$ successes in $n$ indep. trials. The **expected value of binomial** is $E[X] = np$ by linearity. Likewise, the **variance of binomial** is easily computed by [linearity of variance for independent rvs](#ins-theorem-linearity-of-variance) to be $n\cdot \text{Var}(\text{Bernoulli}(p)) = np(1-p)$. There isn't an easy way to express the cdf, but we'll see how to compute it in a straightforward way soon
 
-> #### <strong> **Geometric distribution**
+> #### <ins> **Geometric distribution**
 > The **geometric distribution** represents the number of trials until success with independent probability $p$ of success per round. Thus, note that it's defined on $[1,\infty)$.
 > $$P[\text{Geom(p)} = k] = (1-p)^{k-1}\cdot p$$
 > The **cdf of geometric** is defined as expected: $$P[\text{Geom}(p) > k] = (1-p)^k \tag{$k$ failures is all we know}$$
@@ -302,7 +295,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > $$E[\text{Geom}(p)] = \frac{1}{1-p} \tag{\textbf{mean of geometric}}$$
 > $$E[\text{Var}(\text{Geom}(p))] = \frac{1-p}{p^2} \tag{\textbf{variance of geometric}}$$
 
- #### <strong> *Proof* of **mean of geometric**
+ #### <ins> *Proof* of **mean of geometric**
 *Note: This is not difficult, but a good exercise to gain more comfort with solving infinites series.*
 
  <details><summary>Reveal Hint 1 (New Technique 1)</summary>
@@ -319,7 +312,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
  $$ = p\frac{d}{dq}[\frac{1}{1-q}] = \frac{p}{(1- q)^2} = \frac{1}{p}$$
 </details>
 
- ####  <strong> *Proof* of **variance of geometric**
+ ####  <ins> *Proof* of **variance of geometric**
  *Note: This is a great exercise to try. Think about it, and look at the hints first if you're stuck.*
  <details><summary>Reveal Hint 1</summary>
  
@@ -333,7 +326,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 
   <details><summary>Reveal Hint 3</summary>
 
-[memorylessness of geometrics](#strong-lemma-memorylessness-of-geometrics)
+[memorylessness of geometrics](#ins-lemma-memorylessness-of-geometrics)
  
  </details>
 
@@ -341,7 +334,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 
  To compute the variance of $X$, where $X \sim \text{Geom}(p)$, we'll start by finding the second moment. To do this, we'll employ our second new trick, a similar flavor of which is useful for many different distributions: *conditioning on the first flip* (in general, conditioning on the first event/occurence). Let $A$ be the event that the first coin flip is heads.
  $$E[X^2] = E[X^2 \mid A]P[A] + E[X^2 \mid A^c]P[A^c] \tag{expectation via conditioning}$$
- See [1.2.2 expectation via conditioning](#strong-countable-partitionslaw-of-total-expectation) as needed. Continuing,
+ See [1.2.2 expectation via conditioning](#ins-countable-partitionslaw-of-total-expectation) as needed. Continuing,
  $$ = 1\cdot P[A] + E[(1+X)^2]P[A^c] \tag{\textbf{Geo. Mem. Lemma} $X \mid A^c \sim 1 + \text{Geom}(p)$}$$
  $$ = p + E[1 + 2X + X^2](1-p)$$
  $$ = p + (1 + \frac{2}{p} + E[X^2])\cdot q \tag{linearity, first moment of geom.}$$
@@ -352,7 +345,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 </details>
 
 
-> #### <strong> **Lemma: Memorylessness of Geometrics**
+> #### <ins> **Lemma: Memorylessness of Geometrics**
 > Let $X \sim \text{Geom}(p)$ and $Y = X \mid T]$, where $T$ is the event that the first coin toss is tails. Then $$Y \stackrel{d}{=} X + 1 \tag{\textbf{Memorylessness of Geom.}}$$
 > This means $X+1$ and $Y$ have the same distribution.\
 > *Proof*: $X + 1 \in [2,\infty)$, and $Y \in [2,\infty)$ as well.
@@ -367,7 +360,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 
 
 
-> #### <strong> **Poisson distribution**
+> #### <ins> **Poisson distribution**
 > explanation\
 > pmf\
 > optional cdf/tail\
@@ -375,7 +368,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > variance\
 > comments
 ## Section 2.2: Continuous Distributions
-> #### <strong> **Uniform distribution**
+> #### <ins> **Uniform distribution**
 > explanation\
 > pmf\
 > optional cdf/tail\
@@ -383,7 +376,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > variance\
 > comments
 
-> #### <strong> **Exponential distribution**
+> #### <ins> **Exponential distribution**
 > explanation\
 > pmf\
 > optional cdf/tail\
@@ -391,7 +384,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > variance\
 > comments
 
-> #### <strong> **Normal distribution**
+> #### <ins> **Normal distribution**
 > explanation\
 > pmf\
 > optional cdf/tail\
@@ -399,7 +392,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > variance\
 > comments
 
-> #### <strong> **Erlang distribution**
+> #### <ins> **Erlang distribution**
 > explanation\
 > pmf\
 > optional cdf/tail\
@@ -407,7 +400,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > variance\
 > comments
 
-> #### <strong> **Hyperexponential distribution**
+> #### <ins> **Hyperexponential distribution**
 > explanation\
 > pmf\
 > optional cdf/tail\
