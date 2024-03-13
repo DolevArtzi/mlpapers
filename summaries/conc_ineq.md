@@ -27,33 +27,33 @@ ____
             - [examples](#lemma-mathbbr-is-uncountable)
             - applications
 - Section 1: Introduction to Discrete and Continuous Random Variables
-    - [1.1 discrete random variables, expectation, higher moments](#section-11-discrete-random-variables-expectation-higher-moments-span-classanchor-link-span)
+    - [1.1 discrete random variables, expectation, higher moments](#section-11-discrete-random-variables-expectation-higher-moments--)
         - 1.1.1 discrete random variables and combining rvs
             - pdf, cdf, tail
             - [combining RVs](#combining-random-variables)
-        - [1.1.2 expectation](#strong-expectation-of-random-variables-112)
-            - [expectation of a product](#strong-expectation-of-a-product)
-            - [conditional expectation](#strong-conditional-expectation)
-            - [countable partitions/law of total expectation](#strong-countable-partitionslaw-of-total-expectation)
-        - [1.1.3 variance, and 2nd moment measures](#strong-variance-and-higher-moments)
-            - [std/squared coefficient of variation](#strong-other-second-moment-related-metrics)
-            - [covariance](#strong-covariance)
-    - [1.2 continuous random variables](#strong-continuous-random-variables)
+        - [1.1.2 expectation](#-expectation-of-random-variables-112)
+            - [expectation of a product](#-expectation-of-a-product)
+            - [conditional expectation](#-conditional-expectation)
+            - [countable partitions/law of total expectation](#-countable-partitionslaw-of-total-expectation)
+        - [1.1.3 variance, and 2nd moment measures](#-variance-and-higher-moments)
+            - [std/squared coefficient of variation](#-other-second-moment-related-metrics)
+            - [covariance](#-covariance)
+    - [1.2 continuous random variables](#-continuous-random-variables)
         - 1.3.1 CRVs: basics and moments
-        - [1.2.2 Law of Total Probability for CRVs](#strong-law-of-total-probability-for-continuous-crvs)
+        - [1.2.2 Law of Total Probability for CRVs](#-law-of-total-probability-for-continuous-crvs)
         - [1.2.3 conditioning on CRVs](#add_link)
     - 1.3 applications
 - Section 2: Probability Distributions
     - [2.1 discrete distributions](#section-21-discrete-distributions)
-        - [2.1.1 bernoulli](#strong-bernoulli-distribution)
-        - [2.1.2 binomial, incl. like poisson](#strong-binomial-distribution)
-        - [2.1.3 geometric](#strong-geometric-distribution)
-        - [2.1.4 poisson](#strong-poisson-distribution)
+        - [2.1.1 bernoulli](#-bernoulli-distribution)
+        - [2.1.2 binomial, incl. like poisson](#-binomial-distribution)
+        - [2.1.3 geometric](#-geometric-distribution)
+        - [2.1.4 poisson](#-poisson-distribution)
     - [2.2 continuous distributions]
-        - [2.2.1 uniform](#strong-uniform-distribution)
-        - [2.2.2 exponential, incl. applications](#strong-exponential-distribution)
-        - [2.2.3 normal, incl. approx](#strong-normal-distribution)
-        - [2.2.4 erlangs, application to queueing](#strong-erlang-distribution)
+        - [2.2.1 uniform](#-uniform-distribution)
+        - [2.2.2 exponential, incl. applications](#-exponential-distribution)
+        - [2.2.3 normal, incl. approx](#-normal-distribution)
+        - [2.2.4 erlangs, application to queueing](#-erlang-distribution)
         - [2.2.5 cauchy, applications, additivity]
     - [2.3 generating RVs]
         - [2.3.1 inverse transform]
@@ -178,7 +178,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > TODO: add proof
 > Power set uncountable, cartesian product of countable is countable, show transcendental numbers countable/uncountable
 
-## Section 1.1: Discrete Random Variables, Expectation, Higher Moments <span class="anchor-link"> {#}</span>
+## Section 1.1: Discrete Random Variables, Expectation, Higher Moments <span class="anchor-link"> {#section-11-discrete-random-variables-expectation-higher-moments--}</span>
 > \- $[1.1.1]$ a **random variable** (rv) is a real-valued function of the outcome of an experiment involving randomness (HB 50)\
 > \- **discrete random variables** (drvs) take on a value from a discrete set, while **continuous random variables** (crvs) take on a value from a continuous set\
 > \- For a discrete random variable $X$, we have the following:
