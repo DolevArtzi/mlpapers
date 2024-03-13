@@ -21,7 +21,7 @@ ____
         - [0.2.2 functions](#strong-functions)
             - injective
             - surjective
-        - [0.2.3 counting](#strong-counting-cardinality-and-countability-strong-span-classanchor-link-strong-counting-cardinality-and-countability-strongspan)
+        - [0.2.3 counting](#-counting-cardinality-and-countability---strong-counting-cardinality-and-countability-strong)
             - countability
             - [Cantor's diagonalization argument](#strong-theorem-cantors-diagonalization-argument)
             - [examples](#lemma-mathbbr-is-uncountable)
