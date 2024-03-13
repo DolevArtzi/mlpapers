@@ -2,6 +2,11 @@
 #### `with applications in probability, algorithms, performance modeling/Markov chains and queueing theory, reinforcement learning, theoretical computer science, linear algebra, and machine learning`
 ### *github.com/DolevArtzi*
 ### *Spring 2024*
+<style>
+.anchor-link {
+    display: none;
+}
+</style>
 ____
 ## **Table of Contents**
 - Section 0: Brief Introduction Probability Spaces, Sets, and Measure
@@ -13,10 +18,10 @@ ____
         - [0.1.5. basic laws of probability](#basic-laws-of-probability-015)
     - [0.2 set theory basics](#section-02-sets)
         - 0.2.1 useful identities
-        - [0.2.2 functions](#ins-functions)
+        - [0.2.2 functions](#strong-functions)
             - injective
             - surjective
-        - [0.2.3 counting](#ins-counting-cardinality-and-countabilityins)
+        - [0.2.3 counting](#strong-counting-cardinality-and-countability-strong)
             - countability
             - [Cantor's diagonalization argument](#ins-theorem-cantors-diagonalization-argument)
             - [examples](#lemma-mathbbr-is-uncountable)
@@ -148,7 +153,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > $$ \left(\bigcup_{i\in\mathcal{I}} A_i\right)  \cap B = \bigcup_{i\in\mathcal{I}}(A_i \cap B) \tag{int o union $=$ union o int.}$$
 > $$ (\bigcap\limits_{i\in\mathcal{I}} A_i)^c = \bigcup_{i\in\mathcal{I}}(A_i^c) \tag{\textbf{First DeMorgan's Law}, comp. of int. is un. of comp}$$
 > $$ (\bigcup\limits_{i\in\mathcal{I}} A_i)^c = \bigcap_{i\in\mathcal{I}}(A_i^c) \tag{\textbf{Second DeMorgan's Law}, comp. of un. is int. of comp}$$
-> #### <ins> **Functions**
+> #### <strong> **Functions**
 > a function $f$ between sets $A$ and $B$ is a subset of the *Cartesian product* of $A,B$: $f: A \rightarrow B \subseteq A \times B$. We call $A$ the domain, and $B$ the codomain. For each $a \in A$ that $f$ maps to a $b \in B$, we say $a$ is the *argument* and $b$ its *image*. 
 > #### **Injective Functions**
 > An **injective, or one-to-one** (1:1) function is one where unique arguments have unique images. In math, this means
@@ -157,7 +162,8 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 > A **surjective, or onto** function is one where each element in the codomain is mapped to by at least one argument in $f$. In math,
 > $$f \textbf{  surjective  } \text{ means  }\forall b\text{  } \in \text{codomain}(f), \text{  } \exists a \in \text{domain}(f) \text{ s.t. } f(a) = b$$
 > A function which is both 1:1 and onto is called a **bijection** (write $f: A \leftrightarrow B$), which means an inverse, $f^{-1}$ is well-defined since the mapping is unique and the entire codomain is covered [[source](https://www.ee.iitm.ac.in/~krishnaj/EE5110_files/notes/lecture1_set_theory.pdf)].
-> #### <ins> **Counting: Cardinality and Countability**</ins> 
+
+ ####  <strong> **Counting: Cardinality and Countability** </strong> <span class="anchor-link"> {#strong-counting-cardinality-and-countability-strong}</span>
 > ##### [[source](https://www.ee.iitm.ac.in/~krishnaj/EE5110_files/notes/lecture3_cardinality.pdf)]
 > \- Two sets are **equicardinal** (have the same cardinality) if there exists a bijection between them.
 > $$\exists f:A \hookrightarrow B \text{ injective }  \implies |B| \geq |A|$$
