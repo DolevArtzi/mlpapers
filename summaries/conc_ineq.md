@@ -334,14 +334,7 @@ Events **$A,B$ are independent *given* $C$** if $$P[A \cap B \mid C] = P[A \mid 
 
  To compute the variance of $X$, where $X \sim \text{Geom}(p)$, we'll start by finding the second moment. To do this, we'll employ our second new trick, a similar flavor of which is useful for many different distributions: *conditioning on the first flip* (in general, conditioning on the first event/occurence). Let $A$ be the event that the first coin flip is heads.
  $$E[X^2] = E[X^2 \mid A]P[A] + E[X^2 \mid A^c]P[A^c] \tag{expectation via conditioning}$$
- See [1.2.2 expectation via conditioning](#ins-countable-partitionslaw-of-total-expectation) as needed. Continuing,
- $$ = 1\cdot P[A] + E[(1+X)^2]P[A^c] \tag{\textbf{Geo. Mem. Lemma} $X \mid A^c \sim 1 + \text{Geom}(p)$}$$
- $$ = p + E[1 + 2X + X^2](1-p)$$
- $$ = p + (1 + \frac{2}{p} + E[X^2])\cdot q \tag{linearity, first moment of geom.}$$
- Taking stock of what we have and further simplifying, we reach
- $$ E[X^2] = \frac{2-p}{p} + qE[X^2] \implies E[X^2] = \frac{2-p}{p^2}$$
- Which means the **variance of geometric** is 
- $$\frac{2-p}{p^2} - \frac{1}{p^2} = \frac{1-p}{p^2}$$
+ See [1.2.2 expectation via conditioning](#ins-countable-partitionslaw-of-total-expectation) as needed. Continuing, $$ = 1\cdot P[A] + E[(1+X)^2]P[A^c] \tag{\textbf{Geo. Mem. Lemma} $X \mid A^c \sim 1 + \text{Geom}(p)$}$$ $$ = p + E[1 + 2X + X^2](1-p)$$ $$ = p + (1 + \frac{2}{p} + E[X^2])\cdot q \tag{linearity, first moment of geom.}$$ Taking stock of what we have and further simplifying, we reach $$ E[X^2] = \frac{2-p}{p} + qE[X^2] \implies E[X^2] = \frac{2-p}{p^2}$$ Which means the **variance of geometric** is $$\frac{2-p}{p^2} - \frac{1}{p^2} = \frac{1-p}{p^2}$$
 </details>
 
 
